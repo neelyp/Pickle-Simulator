@@ -1,0 +1,4 @@
+*.o
+PickleSim
+*.stash
+Makefile
