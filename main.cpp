@@ -1,23 +1,37 @@
-#include <QApplication>
-#include <QMainWindow>
-#include <QLabel>
-#include <QWidget>
-#include <QBoxLayout>
+//Ayaan Gill, Paul Rowe, Neelyp
+//Final Project
+//6-3-25
+#include <iostream>
+using namespace std;
 
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    QMainWindow window;
-    Qwidget *centralWidget = new QWidget(&window);
-    QBoxLayout *layout = new QVBoxLayout(centralWidget);
-    window.setCentralWidget(centralWidget);
-    window.setWindowTitle("Pickle Simulator");
-    window.resize(600, 450);
-    QLabel *label = new QLabel("Welcome to Your Pickle Store");
-    label->setAlignment(Qt::AlignCenter);
-    label->setStyleSheet("font-size: 12px; font-weight: bold; color: green;");
 
-    layout->addWidget(label);
+int main()
+{
+    struct {
+        double munyun = 100.00;
+        int sticks = 0;
+        int pickles = 0;
+        int jars = 0;
+        int batter = 0;
+    } inventory;
+    
+    struct {
+        int day = 1;
+        double picklePrice = 0.5;
+        double jarPrice = 1.0;
+        double batterPrice = 0.27;
+    } game;
 
-    window.show();
-    return app.exec();
+    cout << "Start your papas pickleria!";
+    
+    
+    while (game.day < 8 && inventory.munyun > 0) {
+        cout << "Day " << game.day << ": " << endl;
+        cout << "Pickles cost 50 cents to buy. How many would you like to buy for today? ";
+        cin >> inventory.pickles;
+        inventory.munyun -= inventory.pickles * game.picklePrice;
+    }
+    
+    
+    return 0;
 }
