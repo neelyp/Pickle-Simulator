@@ -27,6 +27,7 @@ Customer generate(double satisfaction) {
     double celebrity = 0.5;
     double ddhuang = 0.00000000001;
     double mano = 0.00000000001;
+    double diddyBlud = 6.7;
     double normal = 60.0 - std::max(0.0, 50 - satisfaction) * 0.5;
     
     if (roll < celebrity) {
@@ -39,6 +40,8 @@ Customer generate(double satisfaction) {
         return {"ddhuang", 100, 0.0, false};
     } else if (roll < celebrity + rich + reporter + ddhuang + mano) {
         return {"mano", 100, 0.0, false};
+    } else if (roll < celebrity + rich + reporter + ddhuang + mano + diddyBlud) {
+        return {"diddy blud", 100, 0.0, false};
     } else {
         return {"normal", rando(1, 3), 0.0, false};
     }
