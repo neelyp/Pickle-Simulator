@@ -1,11 +1,32 @@
 // Neel, Ayaan, Paul
-// Final Project - Papas Pickleria
+// Final ProjectPapas Pickleria
 // 6-3-25
 #include <iostream>
 #include "utils.h"
 
+bool checkEvent(double chance) {
+    return randoPercent() <= chance;
+}
+
+int event(double& money, int& day) {
+    if (checkEvent(0.1)) {
+        std::cout << "\n SUPER ROBBERY! You lost 60% of your money and the day is skipped!" << std::endl;
+        money *= 0.4;
+        day++; //skip day
+        return 0;
+    } else if (checkEvent(0.5)) {
+        std::cout << "\nROBBERY! You lost 20% of your money!" << std::endl;
+        money *= 0.8;
+    } else if (checkEvent(1.0)) {
+        std::cout << "\n BONUS DAY! You got 10 extra customers today!" << std::endl;
+        return 10;
+    }
+    return 0;
+}
+
 int main()
 {
+    srand(time(0));
     struct
     {
         int day = 1;
@@ -25,6 +46,11 @@ int main()
         int batter = 0;
         int jars = 0;
     } inven;
+    
+    double satisfaction = 50.0; //starts at 50%
+    int basecustomers = 10; //starting number of customers
+    
+
 
     std::cout << "Start your papas pickleria!" << std::endl;
 
@@ -133,6 +159,56 @@ int main()
         // open the store for the day
         std::cout << "Your store is now open for the day!" << std::endl;
 
+        int bonus = event(inven.munyun, game.day);
+        int totalcustomers = basecustomers + bonus;
+        
+        for (int i = 0; i < totalcustomers; i++) {
+            Customer c = generate(satisfaction);
+            std::cout << "\nCustomer " << (i + 1) << " is a " << c.type << " customer." << std::endl;
+            
+            int successfulsales = 0;
+            for (int j = 0; j < c.items; j++) {
+                if (inven.pickles > 0 && inven.sticks > 0 && inven.batter > 0 && inven.jars > 0) {
+                    inven.pickles--;
+                    inven.sticks--;
+                    inven.batter--;
+                    inven.jars--;
+                    inven.munyun += 3.0; //selling price per item
+                    
+                    successfulsales++;
+                } else {
+                    std::cout << "You ran out of inventory!" << std::endl;
+                    break;
+                }
+            }
+            if (successfulsales > 0) {
+                std::cout << "They bought " << successfulsales << " item(s)!" << std::endl;
+            }
+            
+            //celeb tip
+            if (c.type == "celebrity") {
+                double tip = successfulsales * 3.0 * c.tip;
+                inven.munyun += tip;
+                std::cout << "Celebrity tipped you $" << tip << "!" << std::endl;
+            }
+            
+            //news reporter
+            if (c.type == "reporter") {
+                if (c.isgood) {
+                    satisfaction = std::min(100.0, satisfaction + 10.0);
+                    std::cout << "Reporter wrote a GOOD review. Satisfaction is now " << satisfaction << "%." << std::endl;
+                } else {
+                    satisfaction = std::max(0.0, satisfaction - 20.0);
+                    std::cout << "Reporter wrote a BAD review. Satisfaction is now" << satisfaction << "%." << std::endl;
+                }
+            }
+        }
+        std::cout << "\nEnd of day summary:" << std::endl;
+        std::cout << "Money: $" << inven.munyun << std::endl;
+        std::cout << "Inventory - Pickles: " << inven.pickles << ", Sticks: " << inven.sticks;
+        std::cout << ", Batter: " << inven.batter << ", Jars: " << inven.jars << std::endl;
+        std::cout << "Customer Satisfaction: " << satisfaction << "%" << std::endl;
+                
         game.day++;
     }
 
