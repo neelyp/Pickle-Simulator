@@ -19,5 +19,5 @@ struct inven
     int jars = 0;
 };
 
-void restock(game &game, inven &inven, int &num, int &retFlag);
+void restock(game &game, inven &inven, int &retFlag);
 void dash(int num);

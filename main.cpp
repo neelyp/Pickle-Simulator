@@ -22,13 +22,10 @@ int main()
         std::cout << "You have $" << inven.munyun << " to spend." << std::endl;
         dash(100);
 
-        int num; // used as intermediate before adding things to inven
-
         // BUYING STUFF
-
-        int retFlag;
-        restock(game, inven, num, retFlag);
-        if (retFlag == 3)
+        int retFlag; // skip a day if -1, changed in function
+        restock(game, inven, retFlag);
+        if (retFlag == -1)
             continue;
 
         // open the store for the day
