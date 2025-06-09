@@ -1,19 +1,50 @@
 #pragma once
-#ifndef UTILS_H
-#define UTILS_H
+#include <vector>
 
-#include <string>
+struct game
+{
+    int day = 1;
+    double picklePrice = 0.5;
+    double stickPrice = 0.1;
+    double batterPrice = 0.27;
+    double jarPrice = 1.0;
 
-struct Customer {
-    std::string type;
-    int items;
-    double tip;
-    bool isgood;
+    int baseCustomers = 10; // start at 10, increase by .5% for every satisfaction point above 50%
+    double satisfaction = 50.0;
+
+    double jarredPicklePrice = 3.0;       // price for jarred pickles
+    double pickleOnStickPrice = 2.0;      // price for pickle on a stick
+    double friedPickleOnStickPrice = 4.0; // price for fried pickle on a stick
 };
 
-void dash(int num);
-int rando(int min, int max);
-double randoPercent();
-Customer generate(double satisfaction);
+struct inven
+{
+    double munyun = 100.00;
 
-#endif
+    int pickles = 0;
+    int sticks = 0;
+    int batter = 0;
+    int jars = 0;
+};
+
+struct Customer
+{
+    std::string type;
+    bool buying;
+    int numItemsBuying;
+    std::vector<int> whatBuying; // 0 - jarred pickle, 1 - pickle on a stick, 2 - fried pickle on a stick
+
+    void decideCustomer();
+    void decideBuying(game &game, inven &inven);
+    void decideWhatBuying(game &game, inven &inven);
+};
+
+struct Events
+{
+    std::string type; // type of event
+
+    void decideEvent();
+};
+
+void restock(game &game, inven &inven);
+void dash(int num);
