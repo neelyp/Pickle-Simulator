@@ -3,15 +3,14 @@ Make it so that people can buy your items.
 Make customer satisfaction that increases/decreases the chances of a person entering your store. Every percent above 50% increases chances of good customers entering by .5%, every percent below 50% decreases chances of all customers entering by .5%.
 
 Make different types of customers:
- - rich person -> buys a bunch of your items (like 4-6) (10% chance of entering)
- - News reporter -> writes a paper about your store, 45% chance of being a good report (increase satisfaction by 10%), 55% chance of being bad (reduce satisfaction by 20%) (5% chance of entering)
- - owner -> 
- - celebrity -> gives you an extra 10% of his bill as a tip (0.5% chance of entering)
- - dih -> (0.00000000001% chance)
- - mano -> (0.00000000001% chance)
- - normal person (60% chance) buys 1-3 items
+ - rich person -> buys a bunch of your items (like 4-6) (15% chance of entering)
+ - News reporter -> writes a paper about your store, 45% chance of being a good report (increase satisfaction by 10%), 55% chance of being bad (reduce satisfaction by 20%) (9% chance of entering)
+ - celebrity -> gives you an extra 10% of his bill as a tip and increases satisfaction by 10% (0.9% chance of entering)
+ - dih dih huang -> (0.1% chance) increases satisfaction by 100% because dih dih huang is the goat
+ - normal person (75% chance) buys 1-3 items
 
 Events:
-  - Robbery -> you lose 20% of your money (0.5% of happening)
-  - Super Robbery -> you lose 60% of money and the day skips (0.1%)
-  - Bonus day -> You get 10 extra people to enter your store (1%)
+  - Robbery -> you lose 20% of your money (20% of happening)
+  - Super Robbery -> you lose 60% of money and the day skips (2.5%)
+  - Bonus day -> You get 10 extra people to enter your store (2.5%)
+  - normal day -> nothing special happens (75%)
