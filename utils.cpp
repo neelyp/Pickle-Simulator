@@ -10,10 +10,9 @@ void dash(int num)
     std::cout << std::endl;
 }
 
-void restock(game &game, inven &inven, int &retFlag)
+void restock(game &game, inven &inven)
 {
     int num; // used as intermediate before adding things to inven
-    retFlag = 1;
     // buy pickles
     while (true)
     {

@@ -23,10 +23,8 @@ int main()
         dash(100);
 
         // BUYING STUFF
-        int retFlag; // skip a day if -1, changed in function
-        restock(game, inven, retFlag);
-        if (retFlag == -1)
-            continue;
+
+        restock(game, inven);
 
         // open the store for the day
         std::cout << "Your store is now open for the day!" << std::endl;
