@@ -140,11 +140,11 @@ void restock(game &game, inven &inven)
             std::cout << "You bought " << num << " jars." << std::endl;
             std::cout << "You now have $" << inven.munyun << " left." << std::endl;
             break;
-        }
+        }   
     }
 }
 
-void Customer::decideCustomer()
+void Customer::decideCustomer(game &game)
 {
     std::string types[] = {"Normal", "Rich Person", "News Reporter", "Celebrity", "Dih Dih Huang"};
     // percentages for each type
@@ -166,14 +166,22 @@ void Customer::decideCustomer()
     else if (rand < 99) // news
     {
         type = types[2];
+        int reportchance = std::rand() % 100;
+        if (reportchance < 45){
+            game.satisfaction += 10;
+        } else{
+            game.satisfaction -= 20;
+        }
     }
     else if (rand < 99.9) // celebrity
     {
         type = types[3];
+        game.satisfaction += 10;
     }
     else // dih dih huang
     {
         type = types[4];
+        game.satisfaction += 100;
     }
 }
 

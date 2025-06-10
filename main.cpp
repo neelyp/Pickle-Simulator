@@ -64,6 +64,8 @@ int main()
         std::cout << "Your store is now open for the day!" << std::endl;
 
         customersToday = (game.satisfaction > 50.0) ? game.baseCustomers + static_cast<int>(game.satisfaction - 50.0) * 0.5 : game.baseCustomers - static_cast<int>(50.0 - game.satisfaction) * 0.5;
+  
+
 
         Customer customers[customersToday];
 

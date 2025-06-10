@@ -34,7 +34,7 @@ struct Customer
     int numItemsBuying;
     std::vector<int> whatBuying; // 0 - jarred pickle, 1 - pickle on a stick, 2 - fried pickle on a stick
 
-    void decideCustomer();
+    void decideCustomer(game &game);
     void decideBuying(game &game, inven &inven);
     void decideWhatBuying(game &game, inven &inven);
 };
