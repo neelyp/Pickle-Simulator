@@ -149,5 +149,15 @@ int main()
         game.day++;
     }
 
+    if (inven.munyun <= 0)
+    {
+        std::cout << "You ran out of money! Game over!" << std::endl;
+    }
+    else
+    {
+        std::cout << "You made it through the week! Your final balance is $" << inven.munyun << "." << std::endl;
+        std::cout << "Your final satisfaction rating is " << game.satisfaction << "%." << std::endl;
+    }
+
     return 0;
 }
