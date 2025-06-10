@@ -1,6 +1,8 @@
 #include <iostream>
 #include <cstdlib>
 #include <vector>
+#include <chrono>
+#include <thread>
 
 #include "utils.h"
 
@@ -140,7 +142,7 @@ void restock(game &game, inven &inven)
             std::cout << "You bought " << num << " jars." << std::endl;
             std::cout << "You now have $" << inven.munyun << " left." << std::endl;
             break;
-        }   
+        }
     }
 }
 
@@ -167,10 +169,15 @@ void Customer::decideCustomer(game &game)
     {
         type = types[2];
         int reportchance = std::rand() % 100;
-        if (reportchance < 45){
+        if (reportchance < 45)
+        {
             game.satisfaction += 10;
-        } else{
+            std::cout << "News reporter wrote a good article about your store! (+10\% satisfaction)" << std::endl;
+        }
+        else
+        {
             game.satisfaction -= 20;
+            std::cout << "News reporter wrote a bad article about your store! (-20\% satisfaction)" << std::endl;
         }
     }
     else if (rand < 99.9) // celebrity
@@ -274,4 +281,9 @@ void Events::decideEvent()
     {
         type = eventypes[3];
     }
+}
+
+void sleep(int ms)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }

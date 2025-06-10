@@ -48,3 +48,4 @@ struct Events
 
 void restock(game &game, inven &inven);
 void dash(int num);
+void sleep(int ms);
