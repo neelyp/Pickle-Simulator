@@ -23,6 +23,15 @@ int main()
 
     while (game.day < 8 && inven.munyun > 0)
     {
+        if (game.satisfaction < 0)
+        {
+            game.satisfaction = 0;
+        }
+        else if (game.satisfaction > 100)
+        {
+            game.satisfaction = 100;
+        }
+
         std::cout << "Day " << game.day << ": " << std::endl;
         std::cout << "Your current inventory is: " << std::endl;
         std::cout << "Pickles: " << inven.pickles << std::endl;
@@ -67,9 +76,12 @@ int main()
         std::cout << "Your store is now open for the day!" << std::endl;
 
         customersToday = (game.satisfaction > 50.0) ? game.baseCustomers + static_cast<int>(game.satisfaction - 50.0) * 0.5 : game.baseCustomers - static_cast<int>(50.0 - game.satisfaction) * 0.5;
-        game.baseCustomers = customersToday; // update base customers for next day
-
-        Customer customers[customersToday];
+        if (customersToday <= 0)
+        {
+            customersToday = 15; // reset to base
+        }
+        game.baseCustomers = customersToday;        // update base customers for next day
+        vector<Customer> customers(customersToday); // create a vector of customers for today
 
         std::cout << "You have " << customersToday << " customers today." << std::endl;
         sleep(500);
@@ -85,6 +97,7 @@ int main()
             if (customers[i].buying)
             {
                 cout << "They are buying " << customers[i].numItemsBuying << " items." << std::endl;
+                game.satisfaction += customers[i].numItemsBuying;
                 sleep(500);
                 cout << "They are buying: ";
                 sleep(500);
@@ -143,6 +156,7 @@ int main()
             else
             {
                 cout << "They are not buying anything." << std::endl;
+                game.satisfaction -= 2;
             }
         }
 
