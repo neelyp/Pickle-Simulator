@@ -9,7 +9,7 @@ struct game
     double batterPrice = 0.27;
     double jarPrice = 1.0;
 
-    int baseCustomers = 10; // start at 10, increase by .5% for every satisfaction point above 50%
+    int baseCustomers = 15; // start at 10, increase by .5% for every satisfaction point above 50%
     double satisfaction = 50.0;
 
     double jarredPicklePrice = 3.0;       // price for jarred pickles
